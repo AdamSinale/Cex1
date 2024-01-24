@@ -11,15 +11,20 @@ HEADER = NumClass.h
 
 all: loops recursives recursived loopd mains maindloop maindrec
 
-loops: $(OBJECTS_BC) $(OBJECTS_ACL)
-	$(AR) rcs libclassloops.a $^
-recursives: $(OBJECTS_BC) $(OBJECTS_ACR)
-	$(AR) rcs libclassrec.a $^
-recursived: $(OBJECTS_BC) $(OBJECTS_ACR)
-	$(CC) $(FLAGS) -shared -fPIC -o libclassrec.so $^
-loopd: $(OBJECTS_BC) $(OBJECTS_ACL)
-	$(CC) $(FLAGS) -shared -fPIC -o libclassloops.so $^
+loops: libclassloops.a
+recursives: libclassrec.a
+recursived: libclassrec.so
+loopd: libclassloops.so
 
+libclassloops.a: $(OBJECTS_BC) $(OBJECTS_ACL)
+	$(AR) rcs libclassloops.a $^	
+libclassrec.a: $(OBJECTS_BC) $(OBJECTS_ACR)
+	$(AR) rcs libclassrec.a $^
+libclassrec.so: $(OBJECTS_BC) $(OBJECTS_ACR)
+	$(CC) $(FLAGS) -shared -fPIC -o libclassrec.so $^
+libclassloops.so: $(OBJECTS_BC) $(OBJECTS_ACL)
+	$(CC) $(FLAGS) -shared -fPIC -o libclassloops.so $^
+	
 mains: $(OBJECTS_MAIN) libclassrec.a
 	$(CC) $(FLAGS) -o $@ $< libclassrec.a
 maindloop: $(OBJECTS_MAIN)
@@ -35,7 +40,7 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c $(HEADER)
 	$(CC) $(FLAGS) -fPIC -c advancedClassificationRecursion.c
 basicClassification.o: basicClassification.c $(HEADER)
 	$(CC) $(FLAGS) -fPIC -c basicClassification.c
-	
+
 .PHONY: clean
 clean:
 	rm -f *.o *.so *.a mains maindloop maindrec
