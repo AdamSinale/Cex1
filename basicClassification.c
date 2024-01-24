@@ -3,10 +3,10 @@
 
 int sqrt(int this){
     int i = 1;
-    while(i*i < this){
+    while(i*i <= this){
         i++;
     }
-    return i;
+    return i-1;
 }
 int powerTo(int num){
     int powered = 1;
