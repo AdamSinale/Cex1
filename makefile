@@ -45,7 +45,9 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c $(HEADER)
 
 basicClassification.o: basicClassification.c $(HEADER)
 	$(CC) $(FLAGS) -fPIC -c basicClassification.c
+	
 
+.PHONY: clean
 
 clean:
 	rm -f *.o *.so *.a mains maindloop maindrec
