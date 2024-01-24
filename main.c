@@ -18,17 +18,18 @@ int main(){
     for(int i=num1; i<=num2; i++){
         if(isArmstrong(i) == 1){ printf(" %d", i); }
     }
-    printf("\n\rThe Palindromes are:");
+    printf("\nThe Palindromes are:");
     for(int i=num1; i<=num2; i++){
         if(isPalindrome(i) == 1){ printf(" %d", i); }
     }
-    printf("\n\rThe Prime numbers are:");
+    printf("\nThe Prime numbers are:");
     for(int i=num1; i<=num2; i++){
         if(isPrime(i) == 1){ printf(" %d", i); }
     }
-    printf("\n\rThe Strong numbers are:");
+    printf("\nThe Strong numbers are:");
     for(int i=num1; i<=num2; i++){
         if(isStrong(i) == 1){ printf(" %d", i); }
     }
+    printf("\n");
     return 0;
 }
